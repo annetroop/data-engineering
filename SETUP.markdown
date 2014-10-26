@@ -3,12 +3,12 @@ R instructions
 
 Comments:
 --------
-R is a scripting language normally run from an interpreter, and does not really come with a web front end, so I just read the file in from disk rather than importing via a form.  I hope this is OK.  I also hard-coded both paths and database credentials.  Why?  This is an interpreted language.  Changing the values within the file is just as easy as passing them on a command line.  My take was, if it's devops that's converting files, and we're only going to be doing it a limited number of times, I'd just edit and run the script and it would be OK that it didn't have a nice front end.
+R is a scripting language normally run from an interpreter, and does not really come with a web front end, so I just read the file in from disk rather than importing via a form.  I hope this is OK.  I also hard-coded both paths and database credentials.  Why?  This is an interpreted language.  Changing the values within the file is just as easy as passing them on a command line.  My take was, if it's our group that's converting files, and we're only going to be doing it a limited number of times, I'd just edit and run the script and it would be OK that it didn't have a nice front end.
 
 Installation of software:
 -------------------------
 
-You will need both mySQL and R.  I did this on Windows, so my instructions focus on Windows, but they are available on Linux and Mac as well.
+You will need both mySQL and R.  I did this on Windows, so my instructions focus on Windows, but the software is available on Linux and Mac as well.
 
 Download MySQL from:
 http://dev.mysql.com/downloads/installer/
@@ -31,15 +31,16 @@ Windows and Mac have binary distributions available there.  For Linux they note
 
 When you start R, it comes up with an interpreter console.  Before you source my R code, you need to install a few packages.
 
-Packages > install packages
-choose a mirror
-choose package dplyr
+* Packages > install packages
+* choose a mirror
+* choose package dplyr
 
 Go through again, and choose tidyR.
 
 Now the tricky one: RMySQL isn't available through the drop down menu.  It is not available in binary for Windows.  You will need to run
 
-install.packages("RMySQL", type="source")
+* install.packages("RMySQL", type="source")
+
 which will build it for you.  Make sure that MYSQL_HOME is set and does not contain spaces.
 
 
@@ -65,11 +66,16 @@ From the "console" window in R, chose "File > Source R code" and chose convert.R
 The total purchases (sum of the products of price and number-of-items) will be printed in the R console.
 
 In you mySQL Client Command Line, 
-type 
+type
+
 use mydb;
+
 show tables;
+
 select * from purchases;
+
 select * from merchants;
+
 select * from purchasers;
 
 to see the contents of the database tables.
