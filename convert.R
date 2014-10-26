@@ -60,6 +60,8 @@ df2 <- df %>% select(p_id, m_id, item.description, item.price, purchase.count)
 total <- sum(df2$item.price * df2$purchase.count)
 print(paste("Total purchases were:", total))
 
+# Clean out the tables if there are old copies
+dbSendQuery(mydb, 'drop table if exists purchasers, purchases, merchants;')
 # Store the data frames as tables in the database
 dbWriteTable(mydb, name='purchasers', value=p)
 dbWriteTable(mydb, name='purchases', value=df2)
