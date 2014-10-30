@@ -1,0 +1,29 @@
+<h1>List of items</h1>
+<strong>Jump to:</strong>
+<br>
+<%= link_to("List of Merchants",merchants_path) %>
+<br>
+<%= link_to("List of Puchasers", purchasers_path) %>
+<br>
+<table>
+  <tr>
+     <th>Purchaser id</th>
+     <th>Item description</th>
+     <th>Item price</th>
+     <th>Purchase count</th>    
+     <th>Merchant id</th>
+  </tr>  
+  
+ <% @items.each do |f| %> 
+   <tr>
+     <td><%= link_to(f.purchaser.id,f.purchaser) %></td>
+     <td><%= f.itemdescription %></td>
+     <td><%= f.itemprice %></td>
+     <td><%= f.purchasecount %></td>     
+     <td><%= link_to(f.merchant.id,f.merchant) %></td>
+    <tr>
+<% end %>
+</table>
+
+
+

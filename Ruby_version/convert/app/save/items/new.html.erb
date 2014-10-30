@@ -1,0 +1,23 @@
+<h1>New items<h2>
+
+<%= form_for :item, url: items_path do |f| %>
+
+  <p>
+    <%= f.label :itemdescription %><br>
+    <%= f.text_field :itemdescription %>
+  </p>
+
+  <p>
+    <%= f.label :itemprice %><br>
+    <%= f.text_field :itemprice %>
+  </p>
+  
+  <p>
+    <%= f.label :purchasecount %><br>
+    <%= f.text_field :purchasecount %>
+  </p>  
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>  

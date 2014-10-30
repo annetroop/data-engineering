@@ -1,0 +1,467 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-29 21:20:50 -0400
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.1.6) lib/active_record/migration.rb:389:in `check_pending!'
+  activerecord (4.1.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (249.0ms)
+  [1m[36m (172.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (143.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreatePurchasers (20141028213900)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (8.0ms)[0m  CREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "purchasername" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141028213900"]]
+  [1m[35m (123.0ms)[0m  commit transaction
+Migrating to CreateMerchants (20141028220135)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (8.0ms)[0m  CREATE TABLE "merchants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "merchantname" varchar(255), "merchantaddress" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141028220135"]]
+  [1m[35m (130.0ms)[0m  commit transaction
+Migrating to CreateItems (20141028222918)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (9.0ms)[0m  CREATE TABLE "items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "itemdescription" varchar(255), "itemprice" float, "purchasecount" integer, "merchant_id" integer, "purchaser_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mCREATE  INDEX "index_items_on_merchant_id" ON "items" ("merchant_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_items_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_items_on_merchant_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1mCREATE  INDEX "index_items_on_purchaser_id" ON "items" ("purchaser_id")[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141028222918"]]
+  [1m[36m (110.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_items_on_purchaser_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_items_on_purchaser_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_items_on_merchant_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_items_on_merchant_id' AND type='index'
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-29 21:22:52 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (60.0ms)
+Completed 200 OK in 11388ms (Views: 11335.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-29 21:23:04 -0400
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 312ms (Views: 311.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/items.css?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/purchasers.css?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/merchants.css?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/items.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/merchants.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/purchasers.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-10-29 21:23:05 -0400
+
+
+Started POST "/items/import" for 127.0.0.1 at 2014-10-29 21:26:31 -0400
+Processing by ItemsController#import as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uQDf5Fqrfb2qguy7B41rAk83qUg4040Ps8fnnuMCtSY=", "file"=>#<ActionDispatch::Http::UploadedFile:0x403e240 @tempfile=#<Tempfile:C:/Users/Anne/AppData/Local/Temp/RackMultipart20141029-17616-p89nef>, @original_filename="more_input.tab", @content_type="application/octet-stream", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"more_input.tab\"\r\nContent-Type: application/octet-stream\r\n">, "commit"=>"Import"}
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Snake Plissken' LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPurchaser Exists (1.0ms)[0m  SELECT  1 AS one FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Snake Plissken' LIMIT 1
+  [1m[36mSQL (11.0ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "purchasername", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:32.300929"], ["purchasername", "Snake Plissken"], ["updated_at", "2014-10-30 01:26:32.300929"]]
+  [1m[35m (125.0ms)[0m  commit transaction
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Bob''s Pizza
+' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mMerchant Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'Bob''s Pizza
+' LIMIT 1[0m
+  [1m[35mSQL (11.0ms)[0m  INSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:32.489939"], ["merchantaddress", "987 Fake St"], ["merchantname", "Bob's Pizza\n"], ["updated_at", "2014-10-30 01:26:32.489939"]]
+  [1m[36m (108.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:32.629948"], ["itemdescription", "$10 off $20 of food"], ["itemprice", 10.0], ["merchant_id", 1], ["purchasecount", 2], ["purchaser_id", 1], ["updated_at", "2014-10-30 01:26:32.629948"]]
+  [1m[35m (113.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Amy Pond' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPurchaser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "purchasers" ("created_at", "purchasername", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-10-30 01:26:32.765955"], ["purchasername", "Amy Pond"], ["updated_at", "2014-10-30 01:26:32.765955"]]
+  [1m[36m (112.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Tom''s Awesome Shop
+' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mMerchant Exists (0.0ms)[0m  SELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'Tom''s Awesome Shop
+' LIMIT 1
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:32.898962"], ["merchantaddress", "456 Unreal Rd"], ["merchantname", "Tom's Awesome Shop\n"], ["updated_at", "2014-10-30 01:26:32.898962"]]
+  [1m[35m (202.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (9.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:33.114975"], ["itemdescription", "$30 of awesome for $10"], ["itemprice", 10.0], ["merchant_id", 2], ["purchasecount", 5], ["purchaser_id", 2], ["updated_at", "2014-10-30 01:26:33.114975"]]
+  [1m[36m (127.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Marty McFly' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPurchaser Exists (1.0ms)[0m  SELECT  1 AS one FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Marty McFly' LIMIT 1
+  [1m[36mSQL (9.0ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "purchasername", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:33.264984"], ["purchasername", "Marty McFly"], ["updated_at", "2014-10-30 01:26:33.264984"]]
+  [1m[35m (112.0ms)[0m  commit transaction
+  [1m[36mMerchant Load (0.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Sneaker Store Emporium
+' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mMerchant Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'Sneaker Store Emporium
+' LIMIT 1[0m
+  [1m[35mSQL (9.0ms)[0m  INSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:33.398991"], ["merchantaddress", "123 Fake St"], ["merchantname", "Sneaker Store Emporium\n"], ["updated_at", "2014-10-30 01:26:33.398991"]]
+  [1m[36m (114.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (10.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:33.527998"], ["itemdescription", "$20 Sneakers for $5"], ["itemprice", 5.0], ["merchant_id", 3], ["purchasecount", 1], ["purchaser_id", 3], ["updated_at", "2014-10-30 01:26:33.527998"]]
+  [1m[35m (115.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Sneaker Store Emporium
+' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:33.666007"], ["itemdescription", "$20 Sneakers for $5"], ["itemprice", 5.0], ["merchant_id", 3], ["purchasecount", 4], ["purchaser_id", 1], ["updated_at", "2014-10-30 01:26:33.666007"]]
+  [1m[36m (112.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Sarah Jane Smith' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPurchaser Exists (1.0ms)[0m  SELECT  1 AS one FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Sarah Jane Smith' LIMIT 1
+  [1m[36mSQL (12.0ms)[0m  [1mINSERT INTO "purchasers" ("created_at", "purchasername", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:33.801014"], ["purchasername", "Sarah Jane Smith"], ["updated_at", "2014-10-30 01:26:33.801014"]]
+  [1m[35m (132.0ms)[0m  commit transaction
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Robot Pets R Us
+' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mMerchant Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'Robot Pets R Us
+' LIMIT 1[0m
+  [1m[35mSQL (11.0ms)[0m  INSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:33.967022"], ["merchantaddress", "Foxgrove"], ["merchantname", "Robot Pets R Us\n"], ["updated_at", "2014-10-30 01:26:33.967022"]]
+  [1m[36m (93.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (12.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:34.086030"], ["itemdescription", "K-9 Food"], ["itemprice", 8.5], ["merchant_id", 4], ["purchasecount", 2], ["purchaser_id", 4], ["updated_at", "2014-10-30 01:26:34.086030"]]
+  [1m[35m (99.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Samantha Carter' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPurchaser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Samantha Carter' LIMIT 1[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "purchasers" ("created_at", "purchasername", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-10-30 01:26:34.211036"], ["purchasername", "Samantha Carter"], ["updated_at", "2014-10-30 01:26:34.211036"]]
+  [1m[36m (155.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Go Away Go''auld
+' LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mMerchant Exists (1.0ms)[0m  SELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'Go Away Go''auld
+' LIMIT 1
+  [1m[36mSQL (9.0ms)[0m  [1mINSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:34.392047"], ["merchantaddress", "10 Season St"], ["merchantname", "Go Away Go'auld\n"], ["updated_at", "2014-10-30 01:26:34.392047"]]
+  [1m[35m (119.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (10.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:34.525054"], ["itemdescription", "snake repellant"], ["itemprice", 3.0], ["merchant_id", 5], ["purchasecount", 17], ["purchaser_id", 5], ["updated_at", "2014-10-30 01:26:34.525054"]]
+  [1m[36m (118.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Snake Plissken' LIMIT 1
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Bob''s Pizza
+' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:34.667062"], ["itemdescription", "$10 off $20 of food"], ["itemprice", 10.0], ["merchant_id", 1], ["purchasecount", 2], ["purchaser_id", 1], ["updated_at", "2014-10-30 01:26:34.667062"]]
+  [1m[35m (118.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (2.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Amy Pond' LIMIT 1[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Tom''s Awesome Shop
+' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:34.812071"], ["itemdescription", "$30 of awesome for $20"], ["itemprice", 20.0], ["merchant_id", 2], ["purchasecount", 5], ["purchaser_id", 2], ["updated_at", "2014-10-30 01:26:34.812071"]]
+  [1m[36m (122.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Marty McFly' LIMIT 1
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Sneaker Store Emporium
+' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (9.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:34.959078"], ["itemdescription", "$20 Sneakers for $5"], ["itemprice", 5.0], ["merchant_id", 3], ["purchasecount", 1], ["purchaser_id", 3], ["updated_at", "2014-10-30 01:26:34.959078"]]
+  [1m[35m (107.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (2.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Snake Plissken' LIMIT 1[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Sneaker Store Emporium
+' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (10.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:35.090086"], ["itemdescription", "$20 Sneakers for $5"], ["itemprice", 5.0], ["merchant_id", 3], ["purchasecount", 4], ["purchaser_id", 1], ["updated_at", "2014-10-30 01:26:35.090086"]]
+  [1m[36m (99.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPurchaser Load (1.0ms)[0m  SELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Sarah Jane Smith' LIMIT 1
+  [1m[36mMerchant Load (0.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'PetCo
+' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mMerchant Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "merchants"  WHERE "merchants"."merchantname" = 'PetCo
+' LIMIT 1[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "merchants" ("created_at", "merchantaddress", "merchantname", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:35.217093"], ["merchantaddress", "Foxgrove"], ["merchantname", "PetCo\n"], ["updated_at", "2014-10-30 01:26:35.217093"]]
+  [1m[36m (117.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (10.0ms)[0m  [1mINSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-30 01:26:35.353102"], ["itemdescription", "K-9 Food"], ["itemprice", 10.0], ["merchant_id", 6], ["purchasecount", 2], ["purchaser_id", 4], ["updated_at", "2014-10-30 01:26:35.353102"]]
+  [1m[35m (91.0ms)[0m  commit transaction
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."purchasername" = 'Samantha Carter' LIMIT 1[0m
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."merchantname" = 'Go Away Go''auld
+' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (15.0ms)[0m  INSERT INTO "items" ("created_at", "itemdescription", "itemprice", "merchant_id", "purchasecount", "purchaser_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-10-30 01:26:35.473108"], ["itemdescription", "snake repellant"], ["itemprice", 3.0], ["merchant_id", 5], ["purchasecount", 17], ["purchaser_id", 5], ["updated_at", "2014-10-30 01:26:35.473108"]]
+  [1m[36m (121.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/items
+Completed 302 Found in 3611ms (ActiveRecord: 2997.1ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2014-10-29 21:26:35 -0400
+Processing by ItemsController#index as HTML
+  [1m[35mItem Load (1.0ms)[0m  SELECT "items".* FROM "items"
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered items/index.html.erb within layouts/application (137.0ms)
+Completed 200 OK in 461ms (Views: 449.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/assets/merchants.css?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/items.css?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/welcome.css?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/purchasers.css?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/items.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/merchants.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/purchasers.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/welcome.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-10-29 21:26:36 -0400
+
+
+Started GET "/merchants/6" for 127.0.0.1 at 2014-10-29 21:26:44 -0400
+Processing by MerchantsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered merchants/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 324ms (Views: 319.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2014-10-29 21:26:46 -0400
+Processing by ItemsController#index as HTML
+  [1m[35mItem Load (1.0ms)[0m  SELECT "items".* FROM "items"
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mMerchant Load (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered items/index.html.erb within layouts/application (70.0ms)
+Completed 200 OK in 343ms (Views: 332.0ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/merchants/4" for 127.0.0.1 at 2014-10-29 21:26:51 -0400
+Processing by MerchantsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMerchant Load (1.0ms)[0m  [1mSELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1[0m  [["id", 4]]
+  Rendered merchants/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 261ms (Views: 256.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2014-10-29 21:26:53 -0400
+Processing by ItemsController#index as HTML
+  [1m[35mItem Load (1.0ms)[0m  SELECT "items".* FROM "items"
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mMerchant Load (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mMerchant Load (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered items/index.html.erb within layouts/application (82.0ms)
+Completed 200 OK in 387ms (Views: 378.1ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/purchasers" for 127.0.0.1 at 2014-10-29 21:26:56 -0400
+Processing by PurchasersController#index as HTML
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT "purchasers".* FROM "purchasers"[0m
+  Rendered purchasers/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 292ms (Views: 289.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2014-10-29 21:26:58 -0400
+Processing by ItemsController#index as HTML
+  [1m[35mItem Load (1.0ms)[0m  SELECT "items".* FROM "items"
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPurchaser Load (1.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mPurchaser Load (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mMerchant Load (1.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "purchasers".* FROM "purchasers"  WHERE "purchasers"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "merchants".* FROM "merchants"  WHERE "merchants"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered items/index.html.erb within layouts/application (73.0ms)
+Completed 200 OK in 354ms (Views: 345.0ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/merchants" for 127.0.0.1 at 2014-10-29 21:26:59 -0400
+Processing by MerchantsController#index as HTML
+  [1m[36mMerchant Load (0.0ms)[0m  [1mSELECT "merchants".* FROM "merchants"[0m
+  Rendered merchants/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 284ms (Views: 283.0ms | ActiveRecord: 0.0ms)

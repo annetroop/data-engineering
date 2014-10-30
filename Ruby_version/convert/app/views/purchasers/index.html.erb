@@ -1,0 +1,20 @@
+<h1>List of purchasers</h1>
+
+<table>
+  <tr>
+    <th>Purchaser id</th>
+    <th>Purchaser name</th>
+  </tr>  
+  
+ <% @purchasers.each do |f| %>
+   <tr>
+     <td><%= f.id %></td>
+     <td><%= f.purchasername %></td>
+    <tr>
+ <% end %>
+</table>
+
+<br>
+<%= link_to("Back to Items", items_path) %>
+
+

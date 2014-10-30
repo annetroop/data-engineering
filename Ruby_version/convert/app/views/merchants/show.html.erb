@@ -1,0 +1,20 @@
+<h1>This merchant</h1>
+
+<table>
+  <tr>
+    <th>Merchant id</th>
+    <th>Merchant name</th>
+    <th>Merchant address</th>
+  </tr>  
+  
+ <% f = @merchant %>
+   <tr>
+     <td><%= f.id %></td>
+     <td><%= f.merchantname %></td>
+     <td><%= f.merchantaddress %></td>
+   <tr>
+</table>
+
+<br>
+<%= link_to("Back to Items", items_path) %>
+

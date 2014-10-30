@@ -1,0 +1,18 @@
+<h1>This purchaser</h1>
+
+<table>
+  <tr>
+    <th>Purchaser id</th>
+    <th>Purchaser name</th>
+  </tr>  
+  
+ <% f = @purchaser %>
+   <tr>
+     <td><%= f.id %></td>
+     <td><%= f.purchasername %></td>
+    <tr>
+</table>
+
+<br>
+<%= link_to("Back to Items", items_path) %>
+

@@ -1,0 +1,17 @@
+<h1>New merchant</h1>
+
+<%= form_for :merchant, url: merchants_path do |f| %>
+  <p>
+    <%= f.label :merchantname %><br>
+    <%= f.text_field :merchantname %>
+  </p>
+
+  <p>
+    <%= f.label :merchantaddress %><br>
+    <%= f.text_field :merchantaddress %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
