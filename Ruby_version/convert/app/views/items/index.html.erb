@@ -13,17 +13,22 @@
      <th>Purchase count</th>    
      <th>Merchant id</th>
   </tr>  
-  
+ 
+  <% totalspent = 0 %>     
+
  <% @items.each do |f| %> 
    <tr>
      <td><%= link_to(f.purchaser.id,f.purchaser) %></td>
      <td><%= f.itemdescription %></td>
-     <td><%= f.itemprice %></td>
-     <td><%= f.purchasecount %></td>     
+     <td><%= number_with_precision(f.itemprice, :precision => 2) %></td>
+     <td><%= f.purchasecount %></td>  
+     <% totalspent = totalspent + f.itemprice * f.purchasecount %>     
      <td><%= link_to(f.merchant.id,f.merchant) %></td>
     <tr>
 <% end %>
 </table>
-
+<br>
+ <em>totalspent: $<em>
+ <em> <%= number_with_precision(totalspent, :precision => 2) %> <em>
 
 

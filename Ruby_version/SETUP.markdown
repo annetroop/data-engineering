@@ -18,7 +18,7 @@ purchasers, containing (unique) purchaser name and a purchaser id;
 merchants, containing (unique) merchant name, merchant address, and a merchant id;
 and items, containing item description, item price, purchase count, and a purchaser id and merchant id
 
-It will bring you to a page showing the items table, with links to click through the merchant id or purchaser id, and also links to go to the list of merchants or the list of purchasers.
+It will bring you to a page showing the items table, with links to click through the merchant id or purchaser id, and also links to go to the list of merchants or the list of purchasers.  The total spent is displayed below the table.
 
 This is my first week doing Ruby on Rails, so please be generous in interpreting my lack of knowledge of the finer points of the language.  :^)
 
